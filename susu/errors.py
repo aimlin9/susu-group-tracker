@@ -23,3 +23,15 @@ class UnknownMemberError(SusuError):
 
 class InvalidMemberNameError(SusuError):
     """Member name is empty or blank."""
+
+
+class OverpaymentError(SusuError):
+    """Payment is more than the member still owes for the week."""
+
+
+class InvalidWeekError(SusuError):
+    """Payment is for a week other than the one currently open."""
+
+
+class MembershipClosedError(SusuError):
+    """Members cannot be added once the first contribution has been recorded."""
