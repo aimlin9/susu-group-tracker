@@ -39,3 +39,7 @@ class MembershipClosedError(SusuError):
 
 class GroupStateError(SusuError):
     """Action is not allowed in the group's current state (no members, cycle finished)."""
+
+
+class StorageError(SusuError):
+    """The saved group file is missing, unreadable or invalid."""
