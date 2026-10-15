@@ -35,3 +35,7 @@ class InvalidWeekError(SusuError):
 
 class MembershipClosedError(SusuError):
     """Members cannot be added once the first contribution has been recorded."""
+
+
+class GroupStateError(SusuError):
+    """Action is not allowed in the group's current state (no members, cycle finished)."""
