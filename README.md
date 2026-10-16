@@ -1,5 +1,7 @@
 # Susu Group Tracker
 
+[![tests](https://github.com/aimlin9/susu-group-tracker/actions/workflows/tests.yml/badge.svg)](https://github.com/aimlin9/susu-group-tracker/actions/workflows/tests.yml)
+
 A small Python command-line program that manages one rotating savings group (susu).
 Every member pays the same fixed amount each week; each week the whole pot goes to
 one member, in the order they joined.
@@ -66,6 +68,9 @@ python -m pytest
 The tests cover money parsing, members, contributions (including partial payments
 and overpayment), closing a week (including the "week cannot close" case and the full
 example above), the report, saving/loading, and the CLI end to end.
+
+GitHub Actions runs the full test suite on Python 3.10–3.13 on every push, and also
+runs the example scenario through the real CLI (see `.github/workflows/tests.yml`).
 
 ## Project layout
 

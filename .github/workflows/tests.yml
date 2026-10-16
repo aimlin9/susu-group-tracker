@@ -1,0 +1,30 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install pytest
+      - run: python -m pytest -v
+      - name: Run the spec example through the CLI
+        run: |
+          python -m susu create 50.00
+          for name in Ama Kofi Esi; do python -m susu add "$name"; done
+          python -m susu pay Ama 50
+          python -m susu pay Kofi 50
+          python -m susu pay Esi 30
+          python -m susu close | grep "Esi owes 20.00"
+          python -m susu pay Esi 20
+          python -m susu close | grep "Ama receives 150.00"
+          python -m susu report

@@ -1,0 +1,8 @@
+[project]
+name = "susu-group-tracker"
+version = "1.0.0"
+description = "Manage one rotating savings group (susu) from the command line."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
