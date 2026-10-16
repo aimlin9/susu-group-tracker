@@ -81,3 +81,22 @@ def test_membership_locked_after_week_closes():
     g.close_week()
     with pytest.raises(MembershipClosedError):
         g.add_member("Kofi")
+
+
+def test_pot_is_exact_for_amounts_floats_get_wrong():
+    # 33.33 * 3 and 0.1 + 0.2 style sums drift with floats; pesewas stay exact.
+    g = SusuGroup("33.33")
+    for name in ["Ama", "Kofi", "Esi"]:
+        g.add_member(name)
+    for name in g.members:
+        g.record_contribution(name, "33.33")
+    assert g.close_week().message() == "Week 1 closed: Ama receives 99.99"
+
+
+def test_many_small_partial_payments_sum_exactly():
+    g = SusuGroup("1.00")
+    g.add_member("Ama")
+    for _ in range(100):
+        g.record_contribution("Ama", "0.01")
+    assert g.owed("Ama") == 0
+    assert g.close_week().payout.amount == 100
