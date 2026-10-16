@@ -59,5 +59,18 @@ Rules the brief does not cover, and what the program does:
 - A small HTTP API (e.g. FastAPI) on top of the same `SusuGroup` class.
 - Store state in SQLite with transactions instead of a JSON file, which would also
   make concurrent use safe.
-- Add type checking (mypy), linting and a GitHub Actions workflow that runs the tests on
-  every push.
+- Add type checking (mypy) and linting (ruff) to the GitHub Actions workflow.
+
+## References
+
+- Python `decimal` module, for exact parsing of amounts:
+  https://docs.python.org/3/library/decimal.html
+- Python tutorial, "Floating-Point Arithmetic: Issues and Limitations", on why floats
+  are unsafe for money: https://docs.python.org/3/tutorial/floatingpoint.html
+- `argparse` subcommands, for the CLI: https://docs.python.org/3/library/argparse.html
+- pytest fixtures, `tmp_path` and `capsys`, used in the storage and CLI tests:
+  https://docs.pytest.org/en/stable/how-to/fixtures.html
+- GitHub Actions Python workflow guide:
+  https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python
+- Background on how susu groups work: rotating savings and credit associations (ROSCAs),
+  https://en.wikipedia.org/wiki/Rotating_savings_and_credit_association
